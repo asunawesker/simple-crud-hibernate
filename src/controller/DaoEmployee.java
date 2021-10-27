@@ -41,7 +41,8 @@ public class DaoEmployee implements IDaoGeneral<Employee>{
 
     @Override
     public List<Employee> readAll() {
-        Query query = session.createSQLQuery("SELECT * FROM employees").setResultTransformer(Transformers.aliasToBean(Employee.class));
+//        Query query = session.createSQLQuery("FROM model.Employee").setResultTransformer(Transformers.aliasToBean(Employee.class));
+        Query query = session.createQuery("FROM model.Employee");
         return (List<Employee>) query.list();
     }
 
