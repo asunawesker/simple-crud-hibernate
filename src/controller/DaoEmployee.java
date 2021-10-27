@@ -9,6 +9,7 @@ import java.util.List;
 import model.Employee;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.transform.Transformers;
 import util.HibernateUtil;
 
 /**
@@ -40,7 +41,7 @@ public class DaoEmployee implements IDaoGeneral<Employee>{
 
     @Override
     public List<Employee> readAll() {
-        Query query = session.createQuery("FROM employees");
+        Query query = session.createSQLQuery("SELECT * FROM employees").setResultTransformer(Transformers.aliasToBean(Employee.class));
         return (List<Employee>) query.list();
     }
 

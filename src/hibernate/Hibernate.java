@@ -6,7 +6,9 @@
 package hibernate;
 
 import controller.DaoEmployee;
+import java.util.List;
 import model.Employee;
+import org.hibernate.transform.Transformers;
 
 /**
  *
@@ -20,12 +22,20 @@ public class Hibernate {
     public static void main(String[] args) {
         // TODO code application logic here
         Employee employee = new Employee();
+        employee.setId(1);
         employee.setFullname("Irais Aguirre");
         employee.setTelephone("2721670898");
         employee.setAddress("Norte 16");
         
         DaoEmployee crud = new DaoEmployee();
-        crud.create(employee);
+//        employee.setId(1);
+//        crud.detele(employee);
+//        employee.setAddress("Col. Emiliano Zapata");
+        crud.update(employee);
+        List<Employee> employees = crud.readAll();
+        for (int i = 0; i < employees.size(); i++) {
+            System.out.println(employees.get(i).getFullname());       
+        }
     }
     
 }
